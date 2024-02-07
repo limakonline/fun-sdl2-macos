@@ -9,6 +9,7 @@
 SDL_Window* window = NULL;
 SDL_Surface* screenSurface = NULL;
 SDL_Surface* helloWorld = NULL;
+bool quit = false;
 
 enum KeyPressSurface {
     KEY_PRESS_SURFACE_DEFAULT,
@@ -32,6 +33,9 @@ void handle_key(int key) {
             break;
         case SDLK_LEFT:
             puts("LEFT");
+            break;
+        case 113:
+            quit = true;
             break;
         default:
             printf("unknown press %d\n", key);
@@ -65,7 +69,6 @@ int main(void) {
     SDL_BlitSurface(helloWorld, NULL, screenSurface, NULL);
     SDL_UpdateWindowSurface(window);
     SDL_Event e;
-    bool quit = false;
 
     while (quit == false) {
         while (SDL_PollEvent(&e)) {
